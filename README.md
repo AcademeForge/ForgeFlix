@@ -103,7 +103,7 @@
         <div class="video-grid">
             <!-- Embed YouTube or Instagram -->
             <div class="video-item">
-                <iframe width="300" height="200" src="https://www.youtube.com/embed/{video_id}" frameborder="0" allowfullscreen></iframe>
+                <iframe width="300" height="200" src="https://youtu.be/Xb6AXnZTbF8?si=3YlMcKCl3QEsXAGL" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="video-item">
                 <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/{post_id}/" data-instgrm-version="12"></blockquote>
