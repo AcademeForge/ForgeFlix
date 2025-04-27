@@ -1,165 +1,204 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcademeForge - Motivational & Study Videos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AcademeForge TV</title>
 
-    <!-- Embedded CSS -->
-    <style>
-        /* Reset some basic styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            min-height: 100vh;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      min-height: 100vh;
+      background: #f4f4f4;
+    }
 
-        /* Sidebar Styling */
-        .sidebar {
-            background-color: #111;
-            color: white;
-            width: 240px;
-            padding-top: 20px;
-            position: fixed;
-            height: 100%;
-            top: 0;
-        }
+    .sidebar {
+      background-color: #202020;
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
 
-        .sidebar ul {
-            list-style-type: none;
-        }
+    .sidebar ul {
+      list-style: none;
+      padding: 20px 0;
+    }
 
-        .sidebar ul li {
-            padding: 20px;
-            text-align: center;
-        }
+    .sidebar ul li {
+      padding: 15px 20px;
+    }
 
-        .sidebar ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
+    .sidebar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      display: block;
+    }
 
-        .sidebar ul li:hover {
-            background-color: #444;
-        }
+    .sidebar ul li:hover {
+      background: #383838;
+    }
 
-        /* Main content area */
-        .main-content {
-            margin-left: 260px;
-            width: 100%;
-            padding: 20px;
-        }
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      width: 100%;
+    }
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
+    .toggle-btn {
+      display: none;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #202020;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1000;
+      border: none;
+    }
 
-        /* Video Container */
-        .video-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
+    h2 {
+      margin: 20px 0;
+      text-align: center;
+    }
 
-        .video-item {
-            width: 300px;
-            height: auto;
-        }
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
 
-        iframe {
-            width: 100%;
-            height: 200px;
-        }
+    .video-item iframe {
+      width: 300px;
+      height: 200px;
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #202020;
+      color: white;
+      margin-top: 40px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .toggle-btn {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Motivation</a></li>
-            <li><a href="#">Study Tips</a></li>
-            <li><a href="#">AST Updates</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+<button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+<div class="sidebar" id="sidebar">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Motivation</a></li>
+    <li><a href="#">Study Tips</a></li>
+    <li><a href="#">AST Updates</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</div>
+
+<div class="main-content">
+  <h2>Featured Videos</h2>
+  <div class="video-container">
+
+    <!-- YouTube Long Videos -->
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/Xb6AXnZTbF8" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/Tg19heqR7Mg" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/uBc0GYZV7yk" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Featured Video -->
-        <section class="featured-video">
-            <h2>Featured Video: Motivation for Success</h2>
-            <div class="video-container">
-                <!-- YouTube Embed -->
-                <iframe src="https://www.youtube.com/embed/Xb6AXnZTbF8?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-        </section>
-
-        <!-- Video Gallery -->
-        <section class="video-gallery">
-            <h2>Video Gallery</h2>
-            <div class="video-container">
-                <!-- YouTube Shorts -->
-                <div class="video-item">
-                    <iframe src="https://youtube.com/shorts/MGJLNrh5Af4?si=xZHNtAJv0TCFmxxO" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video-item">
-                    <iframe src="https://youtube.com/shorts/ZbACYMkPLjI?si=UlWTdFcCKee2xyCS" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <!-- Instagram Reels -->
-                <div class="video-item">
-                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DIonRVKyunG/?igsh=dnA1OTZjdWRmY2N2" data-instgrm-version="12"></blockquote>
-                    <script async src="//www.instagram.com/embed.js"></script>
-                </div>
-                <div class="video-item">
-                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DI3eVacSxQG/?igsh=eDZsMTlndWVqdzRx" data-instgrm-version="12"></blockquote>
-                    <script async src="//www.instagram.com/embed.js"></script>
-                </div>
-                <!-- Twitter Posts -->
-                <div class="video-item">
-                    <blockquote class="twitter-tweet">
-                        <a href="https://x.com/AcademeForge/status/1913901410950713651?t=T3O1cGHp3FIxhy5vq9yc8w&s=19"></a>
-                    </blockquote>
-                    <script async src="https://platform.twitter.com/widgets.js"></script>
-                </div>
-                <div class="video-item">
-                    <blockquote class="twitter-tweet">
-                        <a href="https://x.com/AcademeForge/status/1914317258240782497?t=T3O1cGHp3FIxhy5vq9yc8w&s=19"></a>
-                    </blockquote>
-                    <script async src="https://platform.twitter.com/widgets.js"></script>
-                </div>
-                <!-- More Video Items and Links can go here -->
-            </div>
-        </section>
+    <!-- YouTube Shorts -->
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/MGJLNrh5Af4" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed/ZbACYMkPLjI" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 AcademeForge. All Rights Reserved.</p>
-    </footer>
+    <!-- Instagram Reels -->
+    <div class="video-item">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DIonRVKyunG/?igsh=dnA1OTZjdWRmY2N2" data-instgrm-version="14" style="background:#FFF; border:0; margin:0; padding:0;" ></blockquote>
+    </div>
+    <div class="video-item">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DI3eVacSxQG/?igsh=eDZsMTlndWVqdzRx" data-instgrm-version="14" style="background:#FFF; border:0; margin:0; padding:0;" ></blockquote>
+    </div>
+
+    <!-- Twitter Posts -->
+    <div class="video-item">
+      <blockquote class="twitter-tweet">
+        <a href="https://x.com/AcademeForge/status/1913901410950713651?t=T3O1cGHp3FIxhy5vq9yc8w&s=19"></a>
+      </blockquote>
+    </div>
+    <div class="video-item">
+      <blockquote class="twitter-tweet">
+        <a href="https://x.com/AcademeForge/status/1914317258240782497?t=T3O1cGHp3FIxhy5vq9yc8w&s=19"></a>
+      </blockquote>
+    </div>
+
+  </div>
+
+  <h2>Community Post</h2>
+  <div class="video-container">
+    <div class="video-item">
+      <iframe src="https://www.youtube.com/embed?listType=playlist&list=UUkxcumD9empruyZDu2Q7idRTr9VJJApNIG8" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2025 AcademeForge. All rights reserved.
+</footer>
+
+<!-- JavaScript -->
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+  }
+</script>
+
+<!-- Instagram Embedding Script -->
+<script async src="//www.instagram.com/embed.js"></script>
+
+<!-- Twitter Embedding Script -->
+<script async src="https://platform.twitter.com/widgets.js"></script>
 
 </body>
 </html>
