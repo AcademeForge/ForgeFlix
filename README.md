@@ -3,136 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RunXtreme</title>
+  <title>AcademeForge: Indian Bike Rush</title>
   <style>
     body {
       margin: 0;
+      background: #202020;
+      font-family: sans-serif;
       overflow: hidden;
-      background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
     }
     canvas {
       display: block;
-      margin: 0 auto;
-      background: #111;
-      border: 2px solid #fff;
+      margin: auto;
+      background: linear-gradient(to bottom, #444, #111);
     }
   </style>
 </head>
 <body>
-  <canvas id="gameCanvas"></canvas>
+<canvas id="gameCanvas"></canvas>
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = 800;
+canvas.height = 500;
 
-  <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
+let bikeSpeed = 4;
+let traffic = [];
+let keys = {};
 
-    canvas.width = 800;
-    canvas.height = 400;
+const player = {
+  x: 100,
+  y: canvas.height / 2 - 25,
+  width: 40,
+  height: 50,
+  color: "#00e676",
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#fff";
+    ctx.fillText("AcademeForge", this.x - 20, this.y - 10);
+  },
+  update() {
+    if (keys["ArrowUp"] && this.y > 0) this.y -= 5;
+    if (keys["ArrowDown"] && this.y + this.height < canvas.height) this.y += 5;
+    this.draw();
+  }
+};
 
-    let gameSpeed = 5;
-    let gravity = 1;
-    let startTime = Date.now();
+class Car {
+  constructor() {
+    this.x = canvas.width + Math.random() * 100;
+    this.y = Math.random() * (canvas.height - 50);
+    this.width = 60;
+    this.height = 40;
+    this.speed = bikeSpeed + Math.random() * 2;
+    this.color = "#ff3d00";
+  }
 
-    class Player {
-      constructor() {
-        this.x = 50;
-        this.y = canvas.height - 60;
-        this.width = 40;
-        this.height = 50;
-        this.dy = 0;
-        this.jumpPower = -15;
-        this.onGround = true;
-      }
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
 
-      draw() {
-        ctx.fillStyle = "#00f2ff";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-      }
+  update() {
+    this.x -= this.speed;
+    this.draw();
+  }
+}
 
-      update() {
-        this.y += this.dy;
-        if (this.y + this.height < canvas.height) {
-          this.dy += gravity;
-          this.onGround = false;
-        } else {
-          this.dy = 0;
-          this.y = canvas.height - this.height;
-          this.onGround = true;
-        }
-        this.draw();
-      }
+function spawnTraffic() {
+  if (Math.random() < 0.03) {
+    traffic.push(new Car());
+  }
+}
 
-      jump() {
-        if (this.onGround) {
-          this.dy = this.jumpPower;
-        }
-      }
+function checkCollision(a, b) {
+  return (
+    a.x < b.x + b.width &&
+    a.x + a.width > b.x &&
+    a.y < b.y + b.height &&
+    a.y + a.height > b.y
+  );
+}
+
+let frame = 0;
+let startTime = Date.now();
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  player.update();
+  spawnTraffic();
+
+  for (let i = traffic.length - 1; i >= 0; i--) {
+    const car = traffic[i];
+    car.update();
+    if (checkCollision(player, car)) {
+      alert("Bike Crashed! Game Over.");
+      document.location.reload();
     }
+    if (car.x + car.width < 0) traffic.splice(i, 1);
+  }
 
-    class Obstacle {
-      constructor() {
-        this.width = 40;
-        this.height = Math.random() * 40 + 20;
-        this.x = canvas.width;
-        this.y = canvas.height - this.height;
-      }
+  const timeElapsed = (Date.now() - startTime) / 1000;
+  if (timeElapsed > 30) bikeSpeed = 6;
+  if (timeElapsed > 60) bikeSpeed = 8;
 
-      draw() {
-        ctx.fillStyle = "#ff2e63";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-      }
+  requestAnimationFrame(animate);
+}
 
-      update() {
-        this.x -= gameSpeed;
-        this.draw();
-      }
-    }
+window.addEventListener("keydown", (e) => {
+  keys[e.key] = true;
+});
+window.addEventListener("keyup", (e) => {
+  keys[e.key] = false;
+});
 
-    const player = new Player();
-    let obstacles = [];
-    let frame = 0;
-
-    function handleObstacles() {
-      if (frame % 100 === 0) {
-        obstacles.push(new Obstacle());
-      }
-
-      for (let i = 0; i < obstacles.length; i++) {
-        obstacles[i].update();
-
-        // collision detection
-        if (
-          player.x < obstacles[i].x + obstacles[i].width &&
-          player.x + player.width > obstacles[i].x &&
-          player.y < obstacles[i].y + obstacles[i].height &&
-          player.y + player.height > obstacles[i].y
-        ) {
-          alert("Game Over!");
-          document.location.reload();
-        }
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      player.update();
-      handleObstacles();
-
-      const timeElapsed = (Date.now() - startTime) / 1000;
-      if (timeElapsed > 60 && gameSpeed < 10) {
-        gameSpeed += 0.01;
-      }
-
-      frame++;
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener("keydown", (e) => {
-      if (e.code === "Space") {
-        player.jump();
-      }
-    });
-
-    animate();
-  </script>
+animate();
+</script>
 </body>
 </html>
