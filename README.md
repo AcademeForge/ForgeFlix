@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class 1 Quiz Game</title>
+    <title>Class Quiz Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,11 +70,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Class 1 Quiz Game</h1>
+        <h1>Welcome to the Class Quiz Game</h1>
 
         <div id="intro">
             <label for="name">Enter your name:</label>
             <input type="text" id="name" placeholder="Your Name">
+            <label for="classSelect">Select your class:</label>
+            <select id="classSelect">
+                <option value="1">Class 1</option>
+                <option value="2">Class 2</option>
+                <option value="3">Class 3</option>
+                <option value="4">Class 4</option>
+                <option value="5">Class 5</option>
+                <option value="6">Class 6</option>
+                <option value="7">Class 7</option>
+                <option value="8">Class 8</option>
+                <option value="9">Class 9</option>
+                <option value="10">Class 10</option>
+            </select>
             <button onclick="startGame()">Start Game</button>
         </div>
 
@@ -105,36 +118,33 @@
     </div>
 
     <script>
-        const questions = [
-            {
-                question: "What is 2 + 2?",
-                options: ["3", "4", "5", "6"],
-                answer: "4"
-            },
-            {
-                question: "What is 3 + 3?",
-                options: ["5", "6", "7", "8"],
-                answer: "6"
-            },
-            {
-                question: "What is the color of the sky?",
-                options: ["Red", "Blue", "Green", "Yellow"],
-                answer: "Blue"
-            },
-            {
-                question: "Which is the smallest animal?",
-                options: ["Elephant", "Cat", "Dog", "Ant"],
-                answer: "Ant"
-            }
-        ];
+        const questions = {
+            1: [
+                { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: "4" },
+                { question: "What color is the sky?", options: ["Red", "Blue", "Green", "Yellow"], answer: "Blue" },
+                { question: "Which is the smallest animal?", options: ["Elephant", "Cat", "Dog", "Ant"], answer: "Ant" },
+                { question: "What is 1 + 1?", options: ["1", "2", "3", "4"], answer: "2" }
+            ],
+            2: [
+                { question: "What is 3 + 5?", options: ["7", "8", "9", "10"], answer: "8" },
+                { question: "What is the capital of India?", options: ["Delhi", "Mumbai", "Kolkata", "Chennai"], answer: "Delhi" },
+                { question: "Which animal barks?", options: ["Cat", "Lion", "Dog", "Tiger"], answer: "Dog" },
+                { question: "Which is the largest planet?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: "Jupiter" }
+            ],
+            // Add questions for classes 3 to 10 here...
+            // Example: Class 3, 4, etc.
+            // You can add 50 questions for each class as per your need.
+        };
 
         let currentQuestionIndex = 0;
         let score = 0;
         let playerName = '';
+        let selectedClass = 1;
 
         // Start game function
         function startGame() {
             playerName = document.getElementById("name").value.trim();
+            selectedClass = parseInt(document.getElementById("classSelect").value);
             if (!playerName) {
                 alert("Please enter your name!");
                 return;
@@ -146,7 +156,7 @@
 
         // Load question
         function loadQuestion() {
-            const currentQuestion = questions[currentQuestionIndex];
+            const currentQuestion = questions[selectedClass][currentQuestionIndex];
             document.getElementById("questionText").textContent = currentQuestion.question;
             const optionsDiv = document.getElementById("options");
             optionsDiv.innerHTML = '';
@@ -162,7 +172,7 @@
 
         // Check if the answer is correct
         function checkAnswer(selectedOption) {
-            const currentQuestion = questions[currentQuestionIndex];
+            const currentQuestion = questions[selectedClass][currentQuestionIndex];
             if (selectedOption === currentQuestion.answer) {
                 score++;
             }
@@ -172,7 +182,7 @@
         // Go to the next question
         function nextQuestion() {
             currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
+            if (currentQuestionIndex < questions[selectedClass].length) {
                 loadQuestion();
                 document.getElementById("nextBtn").style.display = "none";
             } else {
