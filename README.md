@@ -118,23 +118,77 @@
     </div>
 
     <script>
-        const questions = {
-            1: [
-                { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: "4" },
-                { question: "What color is the sky?", options: ["Red", "Blue", "Green", "Yellow"], answer: "Blue" },
-                { question: "Which is the smallest animal?", options: ["Elephant", "Cat", "Dog", "Ant"], answer: "Ant" },
-                { question: "What is 1 + 1?", options: ["1", "2", "3", "4"], answer: "2" }
-            ],
-            2: [
-                { question: "What is 3 + 5?", options: ["7", "8", "9", "10"], answer: "8" },
-                { question: "What is the capital of India?", options: ["Delhi", "Mumbai", "Kolkata", "Chennai"], answer: "Delhi" },
-                { question: "Which animal barks?", options: ["Cat", "Lion", "Dog", "Tiger"], answer: "Dog" },
-                { question: "Which is the largest planet?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: "Jupiter" }
-            ],
-            // Add questions for classes 3 to 10 here...
-            // Example: Class 3, 4, etc.
-            // You can add 50 questions for each class as per your need.
-        };
+        
+            const questions = {
+    1: [
+        { question: "What is 2 + 2?", options: ["3", "4", "5", "6"], answer: "4" },
+        { question: "What color is the sky?", options: ["Red", "Blue", "Green", "Yellow"], answer: "Blue" },
+        { question: "Which is the smallest animal?", options: ["Elephant", "Cat", "Dog", "Ant"], answer: "Ant" },
+        { question: "What is 1 + 1?", options: ["1", "2", "3", "4"], answer: "2" }
+    ],
+    2: [
+        { question: "What is 3 + 5?", options: ["7", "8", "9", "10"], answer: "8" },
+        { question: "What is the capital of India?", options: ["Delhi", "Mumbai", "Kolkata", "Chennai"], answer: "Delhi" },
+        { question: "Which animal barks?", options: ["Cat", "Lion", "Dog", "Tiger"], answer: "Dog" },
+        { question: "Which is the largest planet?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: "Jupiter" }
+    ],
+    3: [
+        { question: "What is 5 x 5?", options: ["10", "20", "25", "30"], answer: "25" },
+        { question: "Who discovered America?", options: ["Christopher Columbus", "Albert Einstein", "Isaac Newton", "Alexander Graham Bell"], answer: "Christopher Columbus" },
+        { question: "What is the capital of France?", options: ["Berlin", "Madrid", "Paris", "Rome"], answer: "Paris" },
+        { question: "Which is the longest river in the world?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], answer: "Nile" },
+        { question: "Who is the author of 'Harry Potter'?", options: ["J.K. Rowling", "J.R.R. Tolkien", "George Orwell", "Mark Twain"], answer: "J.K. Rowling" }
+    ],
+    4: [
+        { question: "What is 12 x 8?", options: ["96", "88", "72", "104"], answer: "96" },
+        { question: "What is the square root of 64?", options: ["6", "7", "8", "9"], answer: "8" },
+        { question: "Which country is known as the Land of the Rising Sun?", options: ["India", "Japan", "China", "Thailand"], answer: "Japan" },
+        { question: "Who was the first President of the United States?", options: ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "John Adams"], answer: "George Washington" },
+        { question: "What is the chemical symbol for water?", options: ["H2O", "CO2", "O2", "H2O2"], answer: "H2O" }
+    ],
+    5: [
+        { question: "What is 14 x 9?", options: ["128", "132", "142", "126"], answer: "126" },
+        { question: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Saturn"], answer: "Mars" },
+        { question: "Who invented the light bulb?", options: ["Nikola Tesla", "Thomas Edison", "Albert Einstein", "Isaac Newton"], answer: "Thomas Edison" },
+        { question: "Which is the largest mammal?", options: ["Elephant", "Blue Whale", "Giraffe", "Shark"], answer: "Blue Whale" },
+        { question: "Who wrote 'The Diary of a Young Girl'?", options: ["Anne Frank", "Charlotte Brontë", "Jane Austen", "Harper Lee"], answer: "Anne Frank" }
+    ],
+    6: [
+        { question: "What is the value of pi to two decimal places?", options: ["3.14", "3.15", "3.16", "3.12"], answer: "3.14" },
+        { question: "What is the boiling point of water in Celsius?", options: ["100", "90", "80", "110"], answer: "100" },
+        { question: "Who painted the Mona Lisa?", options: ["Pablo Picasso", "Leonardo da Vinci", "Vincent van Gogh", "Claude Monet"], answer: "Leonardo da Vinci" },
+        { question: "What is the tallest mountain in the world?", options: ["Mount Kilimanjaro", "Mount Everest", "Mount Fuji", "Mount McKinley"], answer: "Mount Everest" },
+        { question: "Who is known as the father of modern physics?", options: ["Albert Einstein", "Isaac Newton", "Niels Bohr", "Max Planck"], answer: "Albert Einstein" }
+    ],
+    7: [
+        { question: "What is the capital of Japan?", options: ["Tokyo", "Seoul", "Beijing", "Bangkok"], answer: "Tokyo" },
+        { question: "What is the chemical symbol for gold?", options: ["Au", "Ag", "Cu", "Fe"], answer: "Au" },
+        { question: "Who is the author of 'The Hobbit'?", options: ["J.K. Rowling", "J.R.R. Tolkien", "C.S. Lewis", "George R.R. Martin"], answer: "J.R.R. Tolkien" },
+        { question: "What is the largest country by land area?", options: ["United States", "China", "Russia", "Canada"], answer: "Russia" },
+        { question: "Which element has the atomic number 6?", options: ["Oxygen", "Carbon", "Nitrogen", "Hydrogen"], answer: "Carbon" }
+    ],
+    8: [
+        { question: "What is the value of 2^10?", options: ["1024", "512", "2048", "256"], answer: "1024" },
+        { question: "Who developed the theory of relativity?", options: ["Isaac Newton", "Albert Einstein", "Niels Bohr", "Galileo Galilei"], answer: "Albert Einstein" },
+        { question: "What is the capital of Italy?", options: ["Rome", "Paris", "Berlin", "Madrid"], answer: "Rome" },
+        { question: "Which gas do plants absorb from the atmosphere for photosynthesis?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], answer: "Carbon Dioxide" },
+        { question: "Who was the first man to walk on the moon?", options: ["Yuri Gagarin", "Neil Armstrong", "Buzz Aldrin", "John Glenn"], answer: "Neil Armstrong" }
+    ],
+    9: [
+        { question: "What is the value of 9^2?", options: ["81", "72", "63", "99"], answer: "81" },
+        { question: "What is the capital of Australia?", options: ["Canberra", "Sydney", "Melbourne", "Brisbane"], answer: "Canberra" },
+        { question: "Who wrote 'Romeo and Juliet'?", options: ["William Shakespeare", "Charles Dickens", "Jane Austen", "Leo Tolstoy"], answer: "William Shakespeare" },
+        { question: "What is the chemical symbol for sodium?", options: ["Na", "K", "Ca", "Mg"], answer: "Na" },
+        { question: "Which element is the main component of natural gas?", options: ["Hydrogen", "Carbon", "Oxygen", "Methane"], answer: "Methane" }
+    ],
+    10: [
+        { question: "What is the derivative of x^2?", options: ["2x", "x^2", "2", "x"], answer: "2x" },
+        { question: "Who is known as the father of modern chemistry?", options: ["Dmitri Mendeleev", "Marie Curie", "Robert Boyle", "John Dalton"], answer: "Dmitri Mendeleev" },
+        { question: "What is the capital of Russia?", options: ["Moscow", "St. Petersburg", "Kiev", "Warsaw"], answer: "Moscow" },
+        { question: "What is the chemical formula for methane?", options: ["CH4", "C2H6", "CO2", "C3H8"], answer: "CH4" },
+        { question: "Who was the first president of India?", options: ["Jawaharlal Nehru", "Dr. Rajendra Prasad", "Indira Gandhi", "Sardar Patel"], answer: "Dr. Rajendra Prasad" }
+    ]
+};
 
         let currentQuestionIndex = 0;
         let score = 0;
